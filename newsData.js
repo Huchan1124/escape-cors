@@ -3,6 +3,7 @@ const app = Vue.createApp({
         return {
             message: 'Hello Vue!',
             newsData: [],
+            tempData: '',
         }
     },
     methods: {
@@ -13,19 +14,28 @@ const app = Vue.createApp({
                     this.newsData = res.data.data;
 
                     this.newsData.forEach((item) => {
-                        item.publishedAt = (moment(item.publishedAt).format('YYYY/MM/DD a h:mm:ss '));
+                        item.publishedAt = moment(item.publishedAt).format('YYYY/MM/DD a h:mm:ss ');
                     }
 
                     );
 
-
-
-                    console.log(this.newsData)
                 })
                 .catch((error) => {
                     console.dir(error)
                 })
         },
+        getOneNews(id) {
+            axios.get(`https://alicia-cors-anywhere.herokuapp.com/https://hex-escape-room.herokuapp.com/api/cors/news/${id}`)
+                .then((res) => {
+                    this.tempData = res.data.data;
+
+                    this.tempData.publishedAt = moment(this.tempData.publishedAt).format('YYYY/MM/DD a h:mm:ss ');
+
+                })
+                .catch((error) => {
+                    console.dir(error)
+                })
+        }
     },
     mounted() {
         this.getNews();
