@@ -25,8 +25,8 @@
 										class="card-img" :alt="item.title">
 									<div class="card-img-overlay">
 										<h5 class="card-title">{{item.title}}</h5>
-										<p class="card-text">{{item.publishedAt }}</p><a @click="getOneNews(item.id)"
-											href="#" class="stretched-link"></a>
+										<p class="card-text">{{item.publishedAt }}</p><a @click.prevent="getOneNews(item.id)"
+											href="" class="stretched-link"></a>
 									</div>
 								</div>
 							</div>
